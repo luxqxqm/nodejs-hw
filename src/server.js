@@ -12,10 +12,12 @@ app.use(express.json());
 app.use(cors());
 
 const port = process.env.PORT ?? 3000;
+console.log(process.env.PORT);
 
 await connectMongoDB();
-app.listen(port, () => console.log(`Server work on PORT: ${port}`));
 
 app.use(notesRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
+
+app.listen(port, () => console.log(`Server work on PORT: ${port}`));
