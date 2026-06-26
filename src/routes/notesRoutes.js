@@ -7,7 +7,6 @@ import {
   updateNote,
 } from '../controllers/notesController.js';
 import { celebrate } from 'celebrate';
-
 import {
   createNoteSchema,
   getAllNotesSchema,
