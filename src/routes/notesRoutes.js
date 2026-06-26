@@ -14,16 +14,16 @@ import {
   updateNoteSchema,
 } from '../validations/notesValidation.js';
 
-// GET всі нотатки
 const router = Router();
 
 router.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
-router.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
+router.get('/notes/:noteId', celebrate(updateNoteSchema), getNoteById);
 router.post(
   '/notes',
-  celebrate(createNoteSchema, { abortEarly: false }),
+  celebrate(createNoteSchema),
+  celebrate(noteIdSchema),
   createNote,
 );
 router.delete('/notes/:noteId', celebrate(updateNoteSchema), deleteNote);
-router.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+router.patch('/notes/:noteId', celebrate(noteIdSchema), updateNote);
 export default router;
