@@ -3,15 +3,31 @@ import { Router } from 'express';
 import {
   loginUserSchema,
   registerUserSchema,
+  requestResetEmailSchema,
+  resetPasswordSchema,
 } from '../validations/authValidation.js';
 import {
   loginUser,
   logoutUser,
   refreshUserSession,
   registerUser,
+  requestResetEmail,
+  resetPassword,
 } from '../controllers/authController.js';
 
 const authRouter = Router();
+
+authRouter.post(
+  '/auth/request-reset-email',
+  celebrate(requestResetEmailSchema),
+  requestResetEmail,
+);
+
+authRouter.post(
+  '/auth/reset-password',
+  celebrate(resetPasswordSchema),
+  resetPassword,
+);
 
 authRouter.post(
   '/auth/register',
