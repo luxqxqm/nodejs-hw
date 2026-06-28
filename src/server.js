@@ -8,12 +8,13 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
 import { errors } from 'celebrate';
 import authRouter from './routes/authRoutes.js';
+import cookieParser from 'cookie-parser';
 const app = express();
 
 app.use(logger); //  1. Логер першим — бачить усі запити
 app.use(express.json()); // 2. Парсинг JSON-тіла
 app.use(cors()); // 3. Дозвіл для запитів з інших доменів
-
+app.use(cookieParser());
 app.use(notesRoutes);
 app.use(authRouter);
 app.use(notFoundHandler);
