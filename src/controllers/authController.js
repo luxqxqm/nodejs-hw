@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 
 import createHttpError from 'http-errors';
-import User from '../models/user.js';
+
 import { createSession, setSessionCookies } from '../services/auth.js';
 import { Session } from '../models/session.js';
-
+import User from '../models/user.js';
 export const registerUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
